@@ -1,0 +1,85 @@
+<nz-layout style="min-height: 90vh;">
+  <!-- Sidebar for unauthenticated users -->
+  <nz-sider nzCollapsible nzWidth="200px" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn">
+    <!-- <div class="logo" style="display: flex; color:aliceblue; margin-right: 40px; justify-content: flex-start;">
+      <img src="logo.jpg" alt="Logo"  class="logo"  style="height:50px; width:25px"  />
+      <h2>Roomify</h2>
+    </div> -->
+    <!-- <p style="display:inline-block;margin-top: 25%; margin-left: 10%; ">
+      <img src="logo.jpg" style="height:50px; width:50px; border-radius: 12px;">
+      <span>Roomify</span>
+    </p> -->
+    <div class="header">
+      <img src="logo.jpg" alt="Logo" class="logo" style="height:50px; width:50px; border-radius: 12px;">
+      <span class="name" style="color: aliceblue;">Roomify</span>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item routerLink="/register">
+        <span nz-icon nzType="user"></span>
+        <span><strong>Register</strong></span>
+      </li>
+      <li nz-menu-item routerLink="/">
+        <span nz-icon nzType="login"></span>
+        <span><strong>Login</strong></span>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <!-- Sidebar for admin users -->
+  <nz-sider nzCollapsible nzWidth="200px" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" *ngIf="isAdminLoggedIn">
+    <div class="header">
+      <img src="logo.jpg" alt="Logo" class="logo" style="height:50px; width:50px; border-radius: 12px;">
+      <span class="name" style="color: aliceblue;">Roomify</span>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <!-- <li nz-menu-item routerLink="/admin/room">
+        <span nz-icon nzType="apartment"></span>
+        <span><strong>Post Room</strong></span>
+      </li> -->
+      <li nz-menu-item routerLink="admin/dashboard">
+        <span nz-icon nzType="apartment"></span>
+        <span><strong>Manage Rooms</strong></span>
+      </li>
+      <li nz-menu-item routerLink="/admin/reservation">
+        <span nz-icon nzType="pull-request"></span>
+        <span><strong>Reservation</strong></span>
+      </li>
+      <li nz-menu-item (click)="logout()">
+        <span nz-icon nzType="logout"></span>
+        <span><strong>Logout</strong></span>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <!-- Sidebar for customer users -->
+  <nz-sider nzCollapsible nzWidth="200px" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" *ngIf="isCustomerLoggedIn">
+    <div class="header">
+      <img src="logo.jpg" alt="Logo" class="logo" style="height:50px; width:50px; border-radius: 12px;">
+      <span class="name" style="color: aliceblue;">Roomify</span>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item routerLink="/customer/rooms">
+        <span nz-icon nzType="apartment"></span>
+        <span><strong>Rooms</strong></span>
+      </li>
+      <li nz-menu-item routerLink="/customer/bookings">
+        <span nz-icon nzType="pull-request"></span>
+        <span><strong>Bookings</strong></span>
+      </li>
+      <li nz-menu-item (click)="logout()">
+        <span nz-icon nzType="logout"></span>
+        <span><strong>Logout</strong></span>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <!-- Main content area -->
+  <nz-layout style="flex: 1;">
+    <nz-content style="padding: 24px; min-height: 90vh;">
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer style="text-align: center;">
+      2025 Roomify. All rights reserved.
+    </nz-footer>
+  </nz-layout>
+</nz-layout>
